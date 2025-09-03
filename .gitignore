@@ -2,3 +2,4 @@ dataset_generation/DIAGRAMS/
 dataset_generation/DIAGRAMS_MINI/
 dataset_generation/DIAGRAMS_CUSTOM_LOSS/
 *.pth
+*.png
