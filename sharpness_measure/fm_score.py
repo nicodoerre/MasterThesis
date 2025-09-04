@@ -25,6 +25,7 @@ def thresholding(AF,M):
     return TH
 
 def compute_quality_measure(image):
+    '''Computes the Fourier Magnitude (FM) score of an image.'''
     F = compute_fourier_transform(image)
     Fc = shift_ft(F)
     AF = compute_magnitude(Fc)
