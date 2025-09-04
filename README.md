@@ -19,7 +19,7 @@ To train a model, either run  `python main.py --template EDSR_paper --scale 2 --
 ```
 
 ## WaveMixSR
-To train the model on custom data, simply run the `train_div2k.py` file like `python train_div2k.py -x 2 -metric psnr`, whereas the `x` flag indicates the scale and the `metric` flag the target metric to optimize. The custom verion of this script is for custom loss functions.
+To train the model on custom data, simply run the `train_div2k.py` file like `python train_div2k.py -x 2 -metric psnr`, whereas the `x` flag indicates the scale and the `metric` flag the target metric to optimize. Additionally, the `DATA_ROOT` variable needs to be set accordingly. The custom verion of this script is for custom loss functions.
 
 The code of the model and the overall training procedure is taken from the [official PyTorch implementation](https://github.com/pranavphoenix/WaveMixSR/tree/main) of the authors and it adheres to the paper ["WaveMixSR: Resource-Efficient Neural Network for Image Super-Resolution"](https://openaccess.thecvf.com/content/WACV2024/html/Jeevan_WaveMixSR_Resource-Efficient_Neural_Network_for_Image_Super-Resolution_WACV_2024_paper.html). Also here, a additional hyperparameter search was conducted in the `search_hyper_params` script. in order to utilize "offline" data, a custom dataset class was implemented.
 
