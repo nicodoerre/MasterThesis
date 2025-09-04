@@ -13,6 +13,7 @@ import kornia
 import torchvision.transforms as transforms
 
 def bicubic_downsample(image, scale_factor):
+    '''Downsamples the input image by the given scale factor using bicubic interpolation.'''
     if isinstance(image, np.ndarray):
         image = Image.fromarray(image)
     width, height = image.size
@@ -20,6 +21,7 @@ def bicubic_downsample(image, scale_factor):
     return lr_image
 
 def super_resolve_full_image_esdr(lr_image_np, model, args, device="cuda"):
+    '''Super-resolves the entire low-resolution image using the provided EDSR model.'''
     model = model.to(device).eval()
     lr_tensor = to_tensor(lr_image_np).unsqueeze(0).to(device)      
     lr_tensor = lr_tensor * args.rgb_range                          
@@ -32,6 +34,7 @@ def super_resolve_full_image_esdr(lr_image_np, model, args, device="cuda"):
     return sr_np
 
 def super_resolve_full_image_wavemixsr(lr_image_np, model, device="cuda"):
+    '''Super-resolves the entire low-resolution image using the provided WaveMixSR model.'''
     model = model.to(device).eval()
     lr = transforms.ToTensor()(lr_image_np).unsqueeze(0).to(device)  
     lr_ycbcr = kornia.color.rgb_to_ycbcr(lr)
@@ -84,7 +87,6 @@ def main(args):
         model = get_model(model_name=args.model_name, scale=args.scale)
         sr_img = super_resolve_full_image_esdr(lr_image_np, model, args)
         Image.fromarray(sr_img).save('path/to/save/sr/image')
-    #Image.fromarray(sr_img).save('C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/SR/sp2.png')
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def instantiate_edsr( scale=4):
+    '''Instantiates the EDSR model with the given scale factor and loads pre-trained weights.'''
     args = SimpleNamespace()
     args.scale = [scale]
     args.n_resblocks = 32
@@ -19,13 +20,14 @@ def instantiate_edsr( scale=4):
 
     model = EDSR(args).to(DEVICE)
 
-    ckpt = torch.load('C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/models/edsr/model_best.pt', map_location=DEVICE)
+    ckpt = torch.load('path/to/edsr/model', map_location=DEVICE)
     model.load_state_dict(ckpt)
     #model.eval()
     return model
 
 
 def instantiate_wavemixsr(scale=4):
+    '''Instantiates the WaveMixSR model and loads pre-trained weights.'''
     model = WaveMixSR(
         depth = 4,
         mult = 1,
@@ -33,7 +35,7 @@ def instantiate_wavemixsr(scale=4):
         final_dim = 144,
         dropout = 0.3
     )
-    state_dict = torch.load(f'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/models/wavemixsr/wavemixSR_x4_used.pth',map_location=DEVICE)
+    state_dict = torch.load(f'path/to/wavemixsr/model',map_location=DEVICE)
     model.load_state_dict(state_dict)
     #model.eval()
     return model
