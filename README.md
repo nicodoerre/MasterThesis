@@ -1,3 +1,4 @@
+As a first step, please set up the required environment by running `conda env create -f env.yml`.
 # Data Generation
 The data generation process is designed in a modular fashion. At the heart of the process lies the `constants.py` file, which contains all the randomizable properties for the individua graphs. The `graphing_functions.py` and the `graphing_functions_advanced.py` files contain the functions for creating the individual graphs. The `generate_data.py` script is the main script and loops over all the functions a specified number of times. Each time the function gets called, it does so with a new set of parameters. The created plots are saved in a specified folder. To create a train/validation/test split, simply run the `create_dataset.py` file. Additionally, a example dataset can be downloaded [here](https://huggingface.co/datasets/ndoerre/graphs_and_plots).
 
