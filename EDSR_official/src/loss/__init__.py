@@ -10,7 +10,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from loss.custom_loss import Custom_Loss  
 
 class Loss(nn.modules.loss._Loss):
     def __init__(self, args, ckp):
