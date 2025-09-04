@@ -43,9 +43,8 @@ def main():
 
     args = parser.parse_args()
 
-    #DATA_ROOT = Path(r'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation/DIAGRAMS') 
-    #DATA_ROOT = Path(r'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation/DIAGRAMS_MINI') #for hyperparams
-    DATA_ROOT = Path(r'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation/DIAGRAMS_CUSTOM_LOSS') #for custom loss function
+ 
+    DATA_ROOT = Path(r'path/to/dataset_root')
 
 
     PATCH     = 64
