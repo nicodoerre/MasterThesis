@@ -2,19 +2,16 @@
 # search_hyper_params_wavemix.py
 import subprocess, sys, optuna, pathlib
 
-REPO_ROOT = pathlib.Path(__file__).resolve().parent          # folder …
-TRAIN_PY  = REPO_ROOT / "train_div2k.py"                    # WaveMixSR
-DIR_DATA  = r"C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation"
-SCALE     = 4                                              # 2 / 3 / 4
+REPO_ROOT = pathlib.Path(__file__).resolve().parent        
+TRAIN_PY  = REPO_ROOT / "train_div2k.py" # location of training script               
+DIR_DATA  = r"path/to/dataset"
+SCALE     = 4
 EPOCHS    = 10
 
 def objective(trial):
-    # only two hyper-parameters
     bs = trial.suggest_categorical("batch_size", [4, 8, 16])
     lr_adam = trial.suggest_float("lr", 1e-5, 5e-4, log=True)
     lr_sgd = trial.suggest_float("lr_sgd", 1e-5, 5e-4, log=True)
-
-    #run_name = f"wavemix_lr{lr:.1e}_bs{bs}_trial{trial.number}"
 
     cli = [
         sys.executable, str(TRAIN_PY),
@@ -25,17 +22,16 @@ def objective(trial):
     ]
 
 
-    # run training
     proc = subprocess.run(cli, stdout=subprocess.PIPE,
                           stderr=subprocess.STDOUT, text=True)
     if proc.returncode != 0:
-        print(proc.stdout)            # show traceback once
+        print(proc.stdout)
         raise optuna.TrialPruned()
 
     # parse final PSNR from stdout
     psnr = None
     for line in reversed(proc.stdout.splitlines()):
-        if line.startswith("PSNR_y:"):              # printed by train_div2k.py
+        if line.startswith("PSNR_y:"):
             psnr = float(line.split()[1])
             break
     if psnr is None:

@@ -162,8 +162,8 @@ def main():
 
 
 
-    #criterion =  nn.HuberLoss() # for normal training
-    criterion = Custom_Loss(device=device)
+    criterion =  nn.HuberLoss() # for normal training
+    #criterion = Custom_Loss(device=device) # for custom loss function
 
     scaler = torch.cuda.amp.GradScaler()
     toppsnr = []
