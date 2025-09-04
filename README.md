@@ -1,6 +1,14 @@
 # Data Generation
 The data generation process is designed in a modular fashion. At the heart of the process lies the `constants.py` file, which contains all the randomizable properties for the individua graphs. The `graphing_functions.py` and the `graphing_functions_advanced.py` files contain the functions for creating the individual graphs. The `generate_data.py` script is the main script and loops over all the functions a specified number of times. Each time the function gets called, it does so with a new set of parameters. The created plots are saved in a specified folder. To create a train/validation/test split, simply run the `create_dataset.py` file. Additionally, a example dataset can be downloaded [here](https://huggingface.co/datasets/ndoerre/graphs_and_plots).
 
+# Models
+## EDSR
+The code for the EDSR model of ["Enhanced Deep Residual Networks for Single Image Super-Resolution"](https://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Lim_Enhanced_Deep_Residual_CVPR_2017_paper.pdf)is taken from the [official PyTorch implementation](https://github.com/sanghyun-son/EDSR-PyTorch) on GitHub. The final model was trained by running a hyperparameter search on x2 scale. Then the full model on x2 was traind. This fully trainde x2 model served as a basis for the hyperparameter searches for the higher scales. The fully trained higher scale models were then obtained by using the found hyperparameters of the respective scale. To run the hyperparameter search, simply call the `search_hyper_params` script. The search was only done on a small subset of training data. The EDSR training expects the low resolution counterparts of the images as a seperate set, so the `generate_lr.py` script takes care of that. For specific details to train an EDSR model, please refer to the official repository.
+
+## WaveMixSR
+
+## LIIF
+
 # Sharpness Measure and LPIPS
 The Sharpness Measure is implemented according to ["Image Sharpness Measure for Blurred Images in Frequency Domain"](https://www.sciencedirect.com/science/article/pii/S1877705813016007). The algorithm is located in the `fm_score.py` file in the `sharpness_measure` folder. The veriosn of [LPIPS](https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.html) is taken from the [official PyTorch Repository](https://github.com/richzhang/PerceptualSimilarity) of the authors.
 
