@@ -77,9 +77,6 @@ def prepare_training():
             lr_scheduler.step()
     else:
         model = models.make(config['model']).cuda()
-        #edsr_path = 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/LIIF_official/model_files/edsr_feature_extractor.pth' #
-        #state_dict = torch.load(edsr_path, map_location='cuda')#
-        #model.encoder.load_state_dict(state_dict)#
         optimizer = utils.make_optimizer(
             model.parameters(), config['optimizer'])
         epoch_start = 1

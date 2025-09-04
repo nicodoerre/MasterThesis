@@ -2,7 +2,7 @@ train_dataset:
   dataset:
     name: image-folder
     args:
-      root_path:  C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation/DIAGRAMS/train/HR
+      root_path:  path/to/train_dataset
       repeat: 20
       cache: in_memory
   wrapper:
@@ -19,7 +19,7 @@ val_dataset:
   dataset:
     name: image-folder
     args:
-      root_path:  C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/PracticalPart/dataset_generation/DIAGRAMS/val/HR
+      root_path:  path/to/val_dataset
       repeat: 5 #160
       cache: in_memory
   wrapper:
