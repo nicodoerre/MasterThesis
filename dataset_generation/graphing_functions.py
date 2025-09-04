@@ -7,6 +7,12 @@ import uuid
 from constants import axis_labels, titles, single_colors, line_styles, background_colors, grid_options,legend_labels,text_size_ranges,font_families,font_weights,font_styles
 
 def plot_line( dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a line plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -72,6 +78,12 @@ def plot_line( dataset_folder="dataset", dpi=160):
 
 
 def plot_bar(dataset_folder="dataset",dpi=160):
+    '''
+    Generates and saves a bar chart with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -139,6 +151,12 @@ def plot_bar(dataset_folder="dataset",dpi=160):
 
 
 def plot_pie(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a pie chart with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
     
@@ -198,6 +216,12 @@ def plot_pie(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
     
 def plot_enhanced_line( dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves an enhanced line plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -264,6 +288,13 @@ def plot_enhanced_line( dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
 
 def plot_histogram(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a histogram with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
+
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -324,6 +355,13 @@ def plot_histogram(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
     
 def plot_log(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a log plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
+
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])

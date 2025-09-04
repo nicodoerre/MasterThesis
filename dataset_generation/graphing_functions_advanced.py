@@ -8,6 +8,12 @@ import seaborn as sns
 from constants import axis_labels, titles, single_colors, line_styles, background_colors, grid_options,legend_labels,text_size_ranges,markers,dataframes,font_families,font_weights,font_styles
 
 def plot_scatter(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a scatter plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -75,6 +81,12 @@ def plot_scatter(dataset_folder="dataset", dpi=160):
 
 
 def plot_boxplot(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a box plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -126,6 +138,12 @@ def plot_boxplot(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
 
 def plot_multi_line(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a multi-line plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -204,6 +222,12 @@ def plot_multi_line(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
     
 def plot_heatmap(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a heatmap with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     
@@ -263,6 +287,12 @@ def plot_heatmap(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
     
 def plot_radar(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a radar plot with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     title_size = np.random.uniform(*text_size_ranges["large"])
     label_size = np.random.uniform(*text_size_ranges["medium"])
     legend_size = np.random.uniform(*text_size_ranges["small"])
@@ -331,6 +361,12 @@ def plot_radar(dataset_folder="dataset", dpi=160):
     print(f"Plot saved to: {file_path}")
     
 def plot_pairwise(dataset_folder="dataset", dpi=160):
+    '''
+    Generates and saves a pairwise plot matrix with random parameters.
+    Parameters:
+    - dataset_folder: Folder to save the generated plot.
+    - dpi: Resolution of the saved plot.
+    '''
     _,df = random.choice(list(dataframes.items()))
     num_features = df.shape[1]
     feature_names = df.columns

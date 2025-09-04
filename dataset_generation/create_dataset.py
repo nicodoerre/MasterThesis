@@ -3,6 +3,18 @@ import random
 import shutil	
 
 def split_dataset(source_folder, train_folder, valid_folder,test_folder, train_ratio = 0.8, test_count=100):
+
+    '''
+    Splits the dataset into training, validation, and test sets.
+    Parameters:
+    - source_folder: Folder containing the original images.
+    - train_folder: Folder to save training images.
+    - valid_folder: Folder to save validation images.
+    - test_folder: Folder to save test images.
+    - train_ratio: Proportion of the dataset to include in the training set.
+    - test_count: Number of images to include in the test set.
+    '''
+
     if not os.path.exists(source_folder):
         raise Exception("Source folder does not exist")
     
