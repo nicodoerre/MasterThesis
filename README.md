@@ -6,8 +6,17 @@ The data generation process is designed in a modular fashion. At the heart of th
 ## EDSR
 The code for the EDSR model of ["Enhanced Deep Residual Networks for Single Image Super-Resolution"](https://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Lim_Enhanced_Deep_Residual_CVPR_2017_paper.pdf)is taken from the [official PyTorch implementation](https://github.com/sanghyun-son/EDSR-PyTorch) on GitHub. The final model was trained by running a hyperparameter search on x2 scale. Then the full model on x2 was trained. This fully trainde x2 model served as a basis for the hyperparameter searches for the higher scales. The fully trained higher scale models were then obtained by using the found hyperparameters of the respective scale. To run the hyperparameter search, simply call the `search_hyper_params` script. The search was only done on a small subset of training data. The EDSR training expects the low resolution counterparts of the images as a seperate set, so the `generate_lr.py` script takes care of that. For specific details to train an EDSR model, please refer to the official repository. The custom data handling is done in the `diagrams` files of the `data` subfolder in the `scr` folder.
 
-To train a model, either run  `python main.py --template EDSR_paper --scale 2 --patch_size 96 --n_resblocks 32 --n_feats 256 --test_every 300 --batch_size 16 --lr 0.0001 --res_scale 0.1 --epochs 300 --data_train DIAGRAMS --data_test DIAGRAMS --dir_data path/to/data --ext sep --save path/to/save --reset`, or with the additional `--pre_train` flag when training higher scale models. This loads the model weights of an fully trained x2 model. For details on the specific flags, please see the [official code](https://github.com/sanghyun-son/EDSR-PyTorch).
+To train a model, either run  `python main.py --template EDSR_paper --scale 2 --patch_size 96 --n_resblocks 32 --n_feats 256 --test_every 300 --batch_size 16 --lr 0.0001 --res_scale 0.1 --epochs 300 --data_train DIAGRAMS --data_test DIAGRAMS --dir_data path/to/data --ext sep --save path/to/save --reset`, or with the additional `--pre_train` flag when training higher scale models. This loads the model weights of an fully trained x2 model. For details on the specific flags, please see the [official code](https://github.com/sanghyun-son/EDSR-PyTorch). Please note, that the repository expects the following folder structure:  
+```
+<dir_data>/DIAGRAMS/
+        train/HR/              *.png  (RGB, HR originals)
+        train/LR_bicubic/X2/   *.png
+        train/LR_bicubic/X3/   *.png
+        train/LR_bicubic/X4/   *.png
+        val/HR/                …
+        val/LR_bicubic/X2/…X4/ …
 
+```
 
 ## WaveMixSR
 To train the model on custom data, simply run the `train_div2k.py` file like `python train_div2k.py -x 2 -metric psnr`, whereas the `x` flag indicates the scale and the `metric` flag the target metric to optimize. The custom verion of this script is for custom loss functions.
