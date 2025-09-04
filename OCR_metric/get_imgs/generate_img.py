@@ -45,7 +45,7 @@ def super_resolve_full_image_wavemixsr(lr_image_np, model, device="cuda"):
 
 def main(args):
     if args.random_img:
-        image_folder = 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/HR'
+        image_folder = 'path/to/rnd/image'
         img_list = os.listdir(image_folder)
         rnd_img = np.random.choice(img_list)
         img_path = os.path.join(image_folder, rnd_img)
@@ -53,23 +53,23 @@ def main(args):
         hr_img = cv2.cvtColor(rnd_img, cv2.COLOR_BGR2RGB)
         hr_img_shape = hr_img.shape
     else:
-        hr_img_path = 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/HR/scatter_plot_20250519_082744_96d0780a.png'
+        hr_img_path = 'path/to/img'  # Provide path to your high-resolution image here
         hr_img = cv2.imread(hr_img_path)
         hr_img = cv2.cvtColor(hr_img, cv2.COLOR_BGR2RGB)
         hr_img_shape = hr_img.shape
         
     lr_img = bicubic_downsample(hr_img, args.scale)
     lr_image_np = np.array(lr_img)
-    lr_path = 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/LR/lr_image.png' 
+    lr_path = 'path/to/save/lr/image'  # Provide path to save the low-resolution image, only for liif 
     Image.fromarray(lr_image_np).save(lr_path)
     
     if args.model_name == 'liif':
         resolution = f'{hr_img_shape[0]},{hr_img_shape[1]}'
-        upscaled_path = 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/SR/sp2.png'
+        upscaled_path = 'path/to/save/sr/image'  # Provide path to save the super-resolved image
         cmd = [
-            sys.executable, 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/LIIF_official/demo.py',
+            sys.executable, 'path/to/demo_script/of/liif',
             '--input', lr_path,
-            '--model', 'C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/LIIF_official/save/_train_custom/epoch-best.pth',
+            '--model', 'path/to/liif/model',
             '--resolution', resolution,
             '--output', upscaled_path,
             '--gpu', '0'
@@ -79,16 +79,16 @@ def main(args):
     elif args.model_name == 'wavemixsr':
         model = get_model(model_name=args.model_name, scale=args.scale)
         sr_img = super_resolve_full_image_wavemixsr(lr_image_np, model) 
-        Image.fromarray(sr_img).save('C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/SR/sp2.png')
+        Image.fromarray(sr_img).save('path/to/save/sr/image')
     else:
         model = get_model(model_name=args.model_name, scale=args.scale)
         sr_img = super_resolve_full_image_esdr(lr_image_np, model, args)
-        Image.fromarray(sr_img).save('C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/SR/sp2.png')
+        Image.fromarray(sr_img).save('path/to/save/sr/image')
     #Image.fromarray(sr_img).save('C:/Users/nicol/Desktop/UNI/3.Master/MasterThesis/OCR_metric/test_imgs/SR/sp2.png')
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train EDSR Model")
+    parser = argparse.ArgumentParser(description="Train Model")
     parser.add_argument('--scale', type=int, default=4, help='Scale factor for image super-resolution')
     parser.add_argument('--model_name', type=str, default='edsr', help='Name of the model to instantiate (e.g., edsr, wavemixsr,liif)')
     parser.add_argument('--random_img' , action='store_true', help='Generate a random image for testing')
