@@ -134,10 +134,10 @@ font_weights = ["normal", "bold", "light", "heavy"]
 font_styles = ["normal", "italic", "oblique"]
 
 legend_positions = [
-    (1.2, 0.5),  # Right side, centered
-    (-0.4, 0.5), # Left side, centered
-    (1.2, 1.0),  # Top-right
-    (-0.4, 1.0), # Top-left
-    (1.2, -0.1), # Bottom-right
-    (-0.4, -0.1) # Bottom-left
+    (1.2, 0.5),
+    (-0.4, 0.5), 
+    (1.2, 1.0),  
+    (-0.4, 1.0), 
+    (1.2, -0.1), 
+    (-0.4, -0.1)
 ]
