@@ -1,4 +1,3 @@
-# generate_lr.py  (safe version)
 import cv2, os
 from pathlib import Path
 
